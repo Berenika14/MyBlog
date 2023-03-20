@@ -1,0 +1,19 @@
+.hello-world {
+  text-transform: uppercase;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* width: 50%; */
+  margin: auto;
+  border: 2px solid red;
+  text-align: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
