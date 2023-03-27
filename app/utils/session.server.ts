@@ -1,5 +1,4 @@
 import { createCookieSessionStorage, redirect } from "@remix-run/node";
-import { request } from "http";
 import invariant from "tiny-invariant";
 
 import { getUserById } from "../models/user.server";

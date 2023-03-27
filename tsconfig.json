@@ -4,7 +4,7 @@
     "**/*.ts",
     "**/*.tsx",
     "app/utils/session.server.ts"
-  ],
+, "app/routes/join.jsx", "app/utils/utils.jsx", "app/routes/login.jsx", "prisma/seed.js", "app/root.jsx", "app/utils/utils.js"  ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "isolatedModules": true,

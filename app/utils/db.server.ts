@@ -1,9 +1,14 @@
 import { PrismaClient } from "@prisma/client";
+import type * as Prisma from "@prisma/client"
 
 let prisma: PrismaClient;
 
 declare global {
   var __prisma: PrismaClient | undefined;
+
+  export namespace DB {
+    export type User = Prisma.User
+  }
 }
 
 // this is needed because in development we don't want to restart

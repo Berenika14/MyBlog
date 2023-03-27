@@ -1,15 +1,17 @@
 import type { MetaFunction, LinksFunction } from "@remix-run/node";
 import {
   Links,
+  NavLink,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
   Link,
+  useLoaderData,
 } from "@remix-run/react";
-import { useWindowScroll, useWindowSize } from "react-use";
-
+import { useLocation, useWindowScroll, useWindowSize } from "react-use";
+import { getUser} from './utils/session.server';
 import styles from "./tailwind.css";
 
 export const meta: MetaFunction = () => ({
@@ -26,6 +28,11 @@ export const links: LinksFunction = () => [
   },
 ];
 
+export const loader = async (args) => {
+  const user = await getUser(args.request);
+  return {user}
+
+}
 const nav_links = [
   {
     to: "/",
@@ -58,7 +65,9 @@ export default function App() {
   const scroll_values = useWindowScroll();
   const x = useWindowSize();
   const should_show_black_text = scroll_values.y > x.height;
-
+  const data = useLoaderData()
+  const location = useLocation()
+  const isHomePage = location.pathname === "/"
   return (
     <html lang="en">
       <head>
@@ -83,6 +92,7 @@ export default function App() {
           <div className="">
             <div className="mt-2 mr-2 flex gap-3 ">
               {nav_links.map((link, i) => (
+                data.user && (link.to === "/join" || link.to === "/login") ?  null : !isHomePage && (link.to === "/") ? null :
                 <Link
                   key={i}
                   to={link.to}
